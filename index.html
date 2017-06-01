@@ -22,7 +22,7 @@
 				</select>
 
 				<select name="grade">
-			  		<option value="aplus">A+</option>
+			  		<option value="aplus" selected>A+</option>
 			  		<option value="a">A</option>
 			  		<option value="aminus">A-</option>
 			  		<option value="bplus">B+</option>
@@ -49,7 +49,7 @@
 				</select>
 
 				<select name="grade">
-			  		<option value="aplus">A+</option>
+			  		<option value="aplus" selected>A+</option>
 			  		<option value="a">A</option>
 			  		<option value="aminus">A-</option>
 			  		<option value="bplus">B+</option>
@@ -76,7 +76,7 @@
 				</select>
 
 				<select name="grade">
-			  		<option value="aplus">A+</option>
+			  		<option value="aplus" selected>A+</option>
 			  		<option value="a">A</option>
 			  		<option value="aminus">A-</option>
 			  		<option value="bplus">B+</option>
@@ -103,7 +103,7 @@
 				</select>
 
 				<select name="grade">
-			  		<option value="aplus">A+</option>
+			  		<option value="aplus" selected>A+</option>
 			  		<option value="a">A</option>
 			  		<option value="aminus">A-</option>
 			  		<option value="bplus">B+</option>
@@ -130,7 +130,7 @@
 				</select>
 
 				<select name="grade">
-			  		<option value="aplus">A+</option>
+			  		<option value="aplus" selected>A+</option>
 			  		<option value="a">A</option>
 			  		<option value="aminus">A-</option>
 			  		<option value="bplus">B+</option>
@@ -158,7 +158,7 @@
 				</select>
 
 				<select name="grade">
-			  		<option value="aplus">A+</option>
+			  		<option value="aplus" selected>A+</option>
 			  		<option value="a">A</option>
 			  		<option value="aminus">A-</option>
 			  		<option value="bplus">B+</option>
@@ -179,14 +179,14 @@
 			<div class="class" id="class7">
 
 			Class 7 (optional)
-				<select name="weight">
+				<select name="weight7">
 					<option value="none" selected>No Class</option>
 			  		<option value="regular">Regular</option>
 			  		<option value="smartkid">Honors/AP</option>
 				</select>
 
 				<select name="grade">
-			  		<option value="aplus">A+</option>
+			  		<option value="aplus" selected>A+</option>
 			  		<option value="a">A</option>
 			  		<option value="aminus">A-</option>
 			  		<option value="bplus">B+</option>
@@ -210,60 +210,40 @@
     	<script>
 
 			function submitForm() {
-				var weightedIndex = document.forms[0].uww.selectedIndex;
+					var weightedIndex = document.forms[0].uww.selectedIndex;
 				var weighted=true;
 				if (weightedIndex == 0) {
 					console.log("unweighted");
 					weighted=false;
 				}
-				for (i = 1; i<6; i++) {
-					console.log("class"+i);
+				var totalSum=0;
+				var totalClasses = 7;
+				for (i = 1; i<8; i++) {
+					var classs = document.getElementById("class"+i);
+					//console.log(classs);
+					//console.log(classs.children[1].selectedIndex);
+					if ((i==6 || i==7) && (classs.children[0].selectedIndex == 0)) {
+						totalClasses--;
+						continue;
+					}
+					if (!weighted) {
+						totalSum += value(false, classs.children[1].selectedIndex);
+					} else {
+						//alert(classs.childNodes[2].selectedIndex);
+						totalSum += value(classs.children[0].selectedIndex, classs.children[1].selectedIndex);
+					}
 				}
+				alert(totalSum/totalClasses);
 			}
 
 			//will take in honors (true/false) and the grade
 			function value(honors, gradeIndex) {
+				var values = [4.3,4.0,3.7,3.3,3.0,2.7,2.3,2.0,1.7,1.3,1.0,0.7,0]
 				var value = 0;
-				if (honors) {
+				if (honors == 1) {
 					value += 0.5;
 				}
-				switch (gradeIndex) {
-					case 0: 
-						value += 4.3;
-						break;
-					case 1: 
-						value += 4.0;
-						break;
-					case 2: 
-						value += 3.7;
-						break;
-					case 3: 
-						value += 3.3;
-						break;
-					case 4: 
-						value += 3.0;
-						break;
-					case 5: 
-						value += 2.7;
-						break;
-					case 6: 
-						value += 2.3;
-						break;
-					case 7: 
-						value += 2.0;
-						break;
-					case 8: 
-						value += 1.7;
-						break;
-					case 9: 
-						value += 1.3;
-						break;
-					case 10: 
-						value += 1.0;
-						break;
-					case 11: 
-						value += 0.7;
-				}
+				value += values[gradeIndex];
 				return value;
 			}
 
