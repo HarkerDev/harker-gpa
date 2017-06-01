@@ -1,0 +1,17 @@
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	padding-top: 4em;
+}
+
+form {
+	text-align: center;
+}
+
+#class {
+	padding-top: 0.5em;
+}
