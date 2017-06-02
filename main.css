@@ -8,7 +8,7 @@ body {
 	padding-top: 4em;
 }
 
-form {
+form, p {
 	text-align: center;
 }
 

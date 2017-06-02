@@ -1,4 +1,5 @@
 <html>
+
     <head>
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link href = "main.css" rel="stylesheet">
@@ -8,14 +9,15 @@
 
     	<form id="classList">
     		
-    		<select name="uww">
+<!--     	<select name="uww">
 		  		<option value="uw">Unweighted</option>
 		  		<option value="w" selected>Weighted</option>
-			</select>
+			</select> -->
 
 			<div class="class" id="class1">
 
-			Class 1
+				Class 1
+
 				<select name="weight">
 			  		<option value="regular" selected>Regular</option>
 			  		<option value="smartkid">Honors/AP</option>
@@ -42,7 +44,8 @@
 
 			<div class="class" id="class2">
 
-			Class 2
+				Class 2
+
 				<select name="weight">
 			  		<option value="regular" selected>Regular</option>
 			  		<option value="smartkid">Honors/AP</option>
@@ -69,7 +72,8 @@
 
 			<div class="class" id="class3">
 
-			Class 3
+				Class 3
+
 				<select name="weight">
 			  		<option value="regular" selected>Regular</option>
 			  		<option value="smartkid">Honors/AP</option>
@@ -96,7 +100,8 @@
 
 			<div class="class" id="class4">
 
-			Class 4
+				Class 4
+
 				<select name="weight">
 			  		<option value="regular" selected>Regular</option>
 			  		<option value="smartkid">Honors/AP</option>
@@ -123,7 +128,8 @@
 
 			<div class="class" id="class5">
 
-			Class 5
+				Class 5
+
 				<select name="weight">
 			  		<option value="regular" selected>Regular</option>
 			  		<option value="smartkid">Honors/AP</option>
@@ -150,7 +156,8 @@
 
 			<div class="class" id="class6">
 
-			Class 6 (optional)
+				Class 6 (optional)
+
 				<select name="weight">
 					<option value="none" selected>No Class</option>
 			  		<option value="regular">Regular</option>
@@ -178,7 +185,8 @@
 
 			<div class="class" id="class7">
 
-			Class 7 (optional)
+				Class 7 (optional)
+				
 				<select name="weight7">
 					<option value="none" selected>No Class</option>
 			  		<option value="regular">Regular</option>
@@ -203,19 +211,20 @@
 
 			</div>
 
-    		<input type="submit" onclick="submitForm()">
+    		<input type="submit" onclick="submitForm();return false;">
 
     	</form>
+
+    	<p id="gpa"></p>
 
     	<script>
 
 			function submitForm() {
-				var weightedIndex = document.forms[0].uww.selectedIndex;
+/*				var weightedIndex = document.forms[0].uww.selectedIndex;
 				var weighted=true;
 				if (weightedIndex == 0) {
-					console.log("unweighted");
 					weighted=false;
-				}
+				}*/
 				var totalSum=0;
 				var totalClasses = 7;
 				for (i = 1; i<8; i++) {
@@ -224,13 +233,16 @@
 						totalClasses--;
 						continue;
 					}
-					if (!weighted) {
+					totalSum += value(classs.children[0].selectedIndex, classs.children[1].selectedIndex);
+/*					if (!weighted) {
 						totalSum += value(false, classs.children[1].selectedIndex);
 					} else {
 						totalSum += value(classs.children[0].selectedIndex, classs.children[1].selectedIndex);
-					}
+					}*/
 				}
-				alert(totalSum/totalClasses);
+				var gpa = round(totalSum/totalClasses, 2);
+				var div = document.getElementById("gpa"); 
+				div.innerHTML = "Your Harker GPA is " + gpa; 
 			}
 
 			function value(honors, gradeIndex) {
@@ -241,6 +253,11 @@
 				}
 				value += values[gradeIndex];
 				return value;
+			}
+
+			function round(value, precision) {
+    			var multiplier = Math.pow(10, precision || 0);
+    			return Math.round(value * multiplier) / multiplier;
 			}
 
 		</script>
