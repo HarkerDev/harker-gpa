@@ -1,17 +1,66 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
 html {
-	width: 100%;
-	height: 100%;
+  font-family: Lato, Arial;
+  width: 100%;
+  height: 100%;
 }
 
 body {
-	margin: 0;
-	padding-top: 4em;
+  margin: 0;
+  padding-top: 4em;
+  color: #000;
+}
+
+h1 {
+  text-align: center;
+  font-weight: normal;
+  font-size: 30px;
+  font-weight: normal;
 }
 
 form, p {
-	text-align: center;
+  text-align: center;
 }
 
-.class {
-	padding-top: .5em;
+p {
+  font-size: 20;
+}
+
+input {
+  margin: 20px;
+  border: 1px solid #111;
+  background-color: #eee;
+  width: 150px;
+  padding: 5px 5px 5px 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  height: 34px;
+  border-radius: 5px;
+}
+
+select {
+  margin: 10px;
+  border: 1px solid #111;
+  background: transparent;
+  width: 150px;
+  padding: 5px 35px 5px 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  height: 34px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url(https://image.flaticon.com/icons/svg/118/118738.svg) 96% / 15% no-repeat #eee;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+@media screen and (min-width:0\0) {
+  select {
+    background:none\9;
+    padding: 5px\9;
+  }
 }
