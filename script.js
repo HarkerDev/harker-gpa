@@ -13,7 +13,7 @@ function submitForm() {
 
 	for (i = 1; i < 8; i++) {
 		var classs = document.getElementById("class" + i);
-		if ((i == 6 || i == 7) && (classs.children[0].selectedIndex == 0)) {
+		if ((i == 6 || i == 7) && (classs.children[0].selectedIndex == 2)) {
 			totalClasses--;
 			continue;
 		}
@@ -40,6 +40,7 @@ function value(honors, gradeIndex) {
 		value += 0.5;
 	}
 	value += values[gradeIndex];
+    console.log(value);
 	return value;
 }
 
