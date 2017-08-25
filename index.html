@@ -1,226 +1,207 @@
+<!DOCTYPE HTML>
 <html>
 
-    <head>
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <link href = "main.css" rel="stylesheet">
-    </head>
+<head>
+    <title>Harker GPA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="Harker GPA Calculator">
+    <meta name="author" content="Neeraj Aggarwal">
 
-    <body>
+    <link href="main.css" rel="stylesheet">
+</head>
 
-        <h1>a tool for true harker kids</h1>
+<body>
+    <h1>Harker GPA Calculator</h1>
+    <p style="font-size: 1.1em; padding-bottom: .5em;">For unweighted GPA, select all classes as regular.</p>
 
-      	<form id="classList">
+    <form id="classList">
 
-          <!--<select name="uww">
-    		  	<option value="uw">Unweighted</option>
-    		  	<option value="w" selected>Weighted</option>
-    			</select> -->
+        <div class="class" id="class1"> Class 1
 
-    			<div class="class" id="class1">
+            <select name="weight">
+                <option value="regular" selected>Regular</option>
+                <option value="smartkid">Honors/AP</option>
+            </select>
 
-    				Class 1
+            <select name="grade">
+                <option value="aplus" selected>A+</option>
+                <option value="a">A</option>
+                <option value="aminus">A-</option>
+                <option value="bplus">B+</option>
+                <option value="b">B</option>
+                <option value="bminus">B-</option>
+                <option value="cplus">C+</option>
+                <option value="c">C</option>
+                <option value="cminus">C-</option>
+                <option value="dplus">D+</option>
+                <option value="d">D</option>
+                <option value="dplus">D-</option>
+                <option value="L">F/I</option>
+            </select>
 
-    				<select name="weight">
-    			  		<option value="regular" selected>Regular</option>
-    			  		<option value="smartkid">Honors/AP</option>
-    				</select>
+        </div>
 
-    				<select name="grade">
-    			  		<option value="aplus" selected>A+</option>
-    			  		<option value="a">A</option>
-    			  		<option value="aminus">A-</option>
-    			  		<option value="bplus">B+</option>
-    			  		<option value="b">B</option>
-    			  		<option value="bminus">B-</option>
-    			  		<option value="cplus">C+</option>
-    			  		<option value="c">C</option>
-    			  		<option value="cminus">C-</option>
-    			  		<option value="dplus">D+</option>
-    			  		<option value="d">D</option>
-    			  		<option value="dplus">D-</option>
-    			  		<option value="L">F/I</option>
-    				</select>
+        <div class="class" id="class2"> Class 2
 
-    			</div>
+            <select name="weight">
+                <option value="regular" selected>Regular</option>
+                <option value="smartkid">Honors/AP</option>
+            </select>
 
+            <select name="grade">
+                <option value="aplus" selected>A+</option>
+                <option value="a">A</option>
+                <option value="aminus">A-</option>
+                <option value="bplus">B+</option>
+                <option value="b">B</option>
+                <option value="bminus">B-</option>
+                <option value="cplus">C+</option>
+                <option value="c">C</option>
+                <option value="cminus">C-</option>
+                <option value="dplus">D+</option>
+                <option value="d">D</option>
+                <option value="dplus">D-</option>
+                <option value="L">F/I</option>
+            </select>
 
-    			<div class="class" id="class2">
+        </div>
 
-    				Class 2
+        <div class="class" id="class3"> Class 3
 
-    				<select name="weight">
-    			  		<option value="regular" selected>Regular</option>
-    			  		<option value="smartkid">Honors/AP</option>
-    				</select>
+            <select name="weight">
+                <option value="regular" selected>Regular</option>
+                <option value="smartkid">Honors/AP</option>
+            </select>
 
-    				<select name="grade">
-    			  		<option value="aplus" selected>A+</option>
-    			  		<option value="a">A</option>
-    			  		<option value="aminus">A-</option>
-    			  		<option value="bplus">B+</option>
-    			  		<option value="b">B</option>
-    			  		<option value="bminus">B-</option>
-    			  		<option value="cplus">C+</option>
-    			  		<option value="c">C</option>
-    			  		<option value="cminus">C-</option>
-    			  		<option value="dplus">D+</option>
-    			  		<option value="d">D</option>
-    			  		<option value="dplus">D-</option>
-    			  		<option value="L">F/I</option>
-    				</select>
+            <select name="grade">
+                <option value="aplus" selected>A+</option>
+                <option value="a">A</option>
+                <option value="aminus">A-</option>
+                <option value="bplus">B+</option>
+                <option value="b">B</option>
+                <option value="bminus">B-</option>
+                <option value="cplus">C+</option>
+                <option value="c">C</option>
+                <option value="cminus">C-</option>
+                <option value="dplus">D+</option>
+                <option value="d">D</option>
+                <option value="dplus">D-</option>
+                <option value="L">F/I</option>
+            </select>
 
-    			</div>
+        </div>
 
+        <div class="class" id="class4"> Class 4
 
-    			<div class="class" id="class3">
+            <select name="weight">
+                <option value="regular" selected>Regular</option>
+                <option value="smartkid">Honors/AP</option>
+            </select>
 
-    				Class 3
+            <select name="grade">
+                <option value="aplus" selected>A+</option>
+                <option value="a">A</option>
+                <option value="aminus">A-</option>
+                <option value="bplus">B+</option>
+                <option value="b">B</option>
+                <option value="bminus">B-</option>
+                <option value="cplus">C+</option>
+                <option value="c">C</option>
+                <option value="cminus">C-</option>
+                <option value="dplus">D+</option>
+                <option value="d">D</option>
+                <option value="dplus">D-</option>
+                <option value="L">F/I</option>
+            </select>
 
-    				<select name="weight">
-    			  		<option value="regular" selected>Regular</option>
-    			  		<option value="smartkid">Honors/AP</option>
-    				</select>
+        </div>
 
-    				<select name="grade">
-    			  		<option value="aplus" selected>A+</option>
-    			  		<option value="a">A</option>
-    			  		<option value="aminus">A-</option>
-    			  		<option value="bplus">B+</option>
-    			  		<option value="b">B</option>
-    			  		<option value="bminus">B-</option>
-    			  		<option value="cplus">C+</option>
-    			  		<option value="c">C</option>
-    			  		<option value="cminus">C-</option>
-    			  		<option value="dplus">D+</option>
-    			  		<option value="d">D</option>
-    			  		<option value="dplus">D-</option>
-    			  		<option value="L">F/I</option>
-    				</select>
+        <div class="class" id="class5"> Class 5
 
-    			</div>
+            <select name="weight">
+                <option value="regular" selected>Regular</option>
+                <option value="smartkid">Honors/AP</option>
+            </select>
 
+            <select name="grade">
+                <option value="aplus" selected>A+</option>
+                <option value="a">A</option>
+                <option value="aminus">A-</option>
+                <option value="bplus">B+</option>
+                <option value="b">B</option>
+                <option value="bminus">B-</option>
+                <option value="cplus">C+</option>
+                <option value="c">C</option>
+                <option value="cminus">C-</option>
+                <option value="dplus">D+</option>
+                <option value="d">D</option>
+                <option value="dplus">D-</option>
+                <option value="L">F/I</option>
+            </select>
 
-    			<div class="class" id="class4">
+        </div>
 
-    				Class 4
+        <div class="class" id="class6"> Class 6
 
-    				<select name="weight">
-    			  		<option value="regular" selected>Regular</option>
-    			  		<option value="smartkid">Honors/AP</option>
-    				</select>
+            <select name="weight">
+                <option value="regular">Regular</option>
+                <option value="smartkid">Honors/AP</option>
+                <option value="none" selected>No Class</option>
+            </select>
 
-    				<select name="grade">
-    			  		<option value="aplus" selected>A+</option>
-    			  		<option value="a">A</option>
-    			  		<option value="aminus">A-</option>
-    			  		<option value="bplus">B+</option>
-    			  		<option value="b">B</option>
-    			  		<option value="bminus">B-</option>
-    			  		<option value="cplus">C+</option>
-    			  		<option value="c">C</option>
-    			  		<option value="cminus">C-</option>
-    			  		<option value="dplus">D+</option>
-    			  		<option value="d">D</option>
-    			  		<option value="dplus">D-</option>
-    			  		<option value="L">F/I</option>
-    				</select>
+            <select name="grade">
+                <option value="aplus" selected>A+</option>
+                <option value="a">A</option>
+                <option value="aminus">A-</option>
+                <option value="bplus">B+</option>
+                <option value="b">B</option>
+                <option value="bminus">B-</option>
+                <option value="cplus">C+</option>
+                <option value="c">C</option>
+                <option value="cminus">C-</option>
+                <option value="dplus">D+</option>
+                <option value="d">D</option>
+                <option value="dplus">D-</option>
+                <option value="L">F/I</option>
+            </select>
 
-    			</div>
+        </div>
 
+        <div class="class" id="class7"> Class 7
 
-    			<div class="class" id="class5">
+            <select name="weight7">
+                <option value="regular">Regular</option>
+                <option value="smartkid">Honors/AP</option>
+                <option value="none" selected>No Class</option>
+            </select>
 
-    				Class 5
+            <select name="grade">
+                <option value="aplus" selected>A+</option>
+                <option value="a">A</option>
+                <option value="aminus">A-</option>
+                <option value="bplus">B+</option>
+                <option value="b">B</option>
+                <option value="bminus">B-</option>
+                <option value="cplus">C+</option>
+                <option value="c">C</option>
+                <option value="cminus">C-</option>
+                <option value="dplus">D+</option>
+                <option value="d">D</option>
+                <option value="dplus">D-</option>
+                <option value="L">F/I</option>
+            </select>
 
-    				<select name="weight">
-    			  		<option value="regular" selected>Regular</option>
-    			  		<option value="smartkid">Honors/AP</option>
-    				</select>
+        </div>
 
-    				<select name="grade">
-    			  		<option value="aplus" selected>A+</option>
-    			  		<option value="a">A</option>
-    			  		<option value="aminus">A-</option>
-    			  		<option value="bplus">B+</option>
-    			  		<option value="b">B</option>
-    			  		<option value="bminus">B-</option>
-    			  		<option value="cplus">C+</option>
-    			  		<option value="c">C</option>
-    			  		<option value="cminus">C-</option>
-    			  		<option value="dplus">D+</option>
-    			  		<option value="d">D</option>
-    			  		<option value="dplus">D-</option>
-    			  		<option value="L">F/I</option>
-    				</select>
+        <input type="submit" onclick="submitForm();return false;">
 
-    			</div>
+    </form>
 
+    <p id="gpa"></p>
 
-    			<div class="class" id="class6">
+    <script src="script.js"></script>
 
-    				Class 6
-
-    				<select name="weight">
-    			  		<option value="regular">Regular</option>
-    			  		<option value="smartkid">Honors/AP</option>
-                        <option value="none" selected>No Class</option>
-    				</select>
-
-    				<select name="grade">
-    			  		<option value="aplus" selected>A+</option>
-    			  		<option value="a">A</option>
-    			  		<option value="aminus">A-</option>
-    			  		<option value="bplus">B+</option>
-    			  		<option value="b">B</option>
-    			  		<option value="bminus">B-</option>
-    			  		<option value="cplus">C+</option>
-    			  		<option value="c">C</option>
-    			  		<option value="cminus">C-</option>
-    			  		<option value="dplus">D+</option>
-    			  		<option value="d">D</option>
-    			  		<option value="dplus">D-</option>
-    			  		<option value="L">F/I</option>
-    				</select>
-
-    			</div>
-
-
-    			<div class="class" id="class7">
-
-    				Class 7
-
-    				<select name="weight7">
-    			  		<option value="regular">Regular</option>
-    			  		<option value="smartkid">Honors/AP</option>
-                        <option value="none" selected>No Class</option>
-    				</select>
-
-    				<select name="grade">
-    			  		<option value="aplus" selected>A+</option>
-    			  		<option value="a">A</option>
-    			  		<option value="aminus">A-</option>
-    			  		<option value="bplus">B+</option>
-    			  		<option value="b">B</option>
-    			  		<option value="bminus">B-</option>
-    			  		<option value="cplus">C+</option>
-    			  		<option value="c">C</option>
-    			  		<option value="cminus">C-</option>
-    			  		<option value="dplus">D+</option>
-    			  		<option value="d">D</option>
-    			  		<option value="dplus">D-</option>
-    			  		<option value="L">F/I</option>
-    				</select>
-
-    			</div>
-
-      		<input type="submit" onclick="submitForm();return false;">
-
-      	</form>
-
-      	<p id="gpa"></p>
-
-        <script src="script.js"></script>
-
-	</body>
+</body>
 
 </html>
