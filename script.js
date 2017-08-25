@@ -3,12 +3,12 @@ function submitForm() {
     var totalClasses = 7;
 
     for (i = 1; i < 8; i++) {
-        var classs = document.getElementById("class" + i);
-        if ((i == 6 || i == 7) && (classs.children[0].selectedIndex == 2)) {
+        var classID = document.getElementById("class" + i);
+        if ((i == 6 || i == 7) && (classID.children[0].selectedIndex == 2)) {
             totalClasses--;
             continue;
         }
-        totalSum += value(classs.children[0].selectedIndex, classs.children[1].selectedIndex);
+        totalSum += value(classID.children[0].selectedIndex, classID.children[1].selectedIndex);
     }
 
     var gpa = round(totalSum / totalClasses, 2);
