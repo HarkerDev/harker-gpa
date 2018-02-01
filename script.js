@@ -1,14 +1,20 @@
 function submitForm() {
     var totalSum = 0;
-    var totalClasses = 7;
+    var totalClasses = 0;
 
     for (i = 1; i < 8; i++) {
         var classID = document.getElementById("class" + i);
-        if ((i == 6 || i == 7) && (classID.children[0].selectedIndex == 2)) {
-            totalClasses--;
+        // No class
+        if ((i == 6 && (classID.children[0].selectedIndex == 3)) || (i == 7 && (classID.children[0].selectedIndex == 1))) {
             continue;
+        // Electives
+      } else if ((i == 6 && (classID.children[0].selectedIndex == 2)) || (i == 7 && (classID.children[0].selectedIndex == 0))) {
+          totalSum += value(classID.children[0].selectedIndex, classID.children[1].selectedIndex)/2;
+          totalClasses += 0.5;
+        } else {
+          totalSum += value(classID.children[0].selectedIndex, classID.children[1].selectedIndex);
+          totalClasses += 1;
         }
-        totalSum += value(classID.children[0].selectedIndex, classID.children[1].selectedIndex);
     }
 
     var gpa = round(totalSum / totalClasses, 2);
@@ -24,7 +30,6 @@ function value(honors, gradeIndex) {
         value += 0.5;
     }
     value += values[gradeIndex];
-    console.log(value);
     return value;
 }
 
