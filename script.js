@@ -1,3 +1,5 @@
+let weighted = true;
+
 function submitForm() {
     var totalSum = 0;
     var totalClasses = 0;
@@ -26,7 +28,7 @@ function submitForm() {
 function value(honors, gradeIndex) {
     var values = [4.3, 4.0, 3.7, 3.3, 3.0, 2.7, 2.3, 2.0, 1.7, 1.3, 1.0, 0.7, 0];
     var value = 0;
-    if (honors == 1) {
+    if (honors == 1 && weighted) {
         value += 0.5;
     }
     value += values[gradeIndex];
@@ -36,4 +38,15 @@ function value(honors, gradeIndex) {
 function round(value, precision) {
     var multiplier = Math.pow(10, precision || 0);
     return Math.round(value * multiplier) / multiplier;
+}
+
+document.getElementById("isWeighted").onclick = function() {
+    if(document.getElementById("isWeighted").value == "Unweighted") {
+        document.getElementById("isWeighted").value  = "Weighted";
+        weighted = true;
+    } else {
+        document.getElementById("isWeighted").value  = "Unweighted";
+        weighted = false;
+    }
+
 }

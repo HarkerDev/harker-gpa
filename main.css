@@ -58,6 +58,10 @@ select::-ms-expand {
   display: none;
 }
 
+#isWeighted {
+  margin-left: calc(50% - 75px);
+}
+
 @media screen and (min-width:0\0) {
   select {
     background:none\9;
