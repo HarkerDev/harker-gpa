@@ -32,6 +32,7 @@ input {
   background-color: #eee;
   width: 150px;
   padding: 5px 5px 5px 5px;
+  font-family: Roboto, sans-serif;
   font-size: 16px;
   border: 1px solid #ccc;
   height: 34px;
@@ -44,6 +45,7 @@ select {
   background: transparent;
   width: 150px;
   padding: 5px 35px 5px 5px;
+  font-family: Roboto, sans-serif;
   font-size: 16px;
   border: 1px solid #ccc;
   height: 34px;
