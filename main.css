@@ -15,6 +15,7 @@ h1 {
   font-family: "Lexend Deca", Roboto, sans-serif;
   font-size: 30px;
   font-weight: normal;
+  letter-spacing: -0.5px;
 }
 
 form, p {
