@@ -1,7 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Lato");
-
 html {
-  font-family: Lato, Arial;
+  font-family: Roboto, sans-serif;
   width: 100%;
   height: 100%;
 }
@@ -14,7 +12,7 @@ body {
 
 h1 {
   text-align: center;
-  font-weight: normal;
+  font-family: "Lexend Deca", Roboto, sans-serif;
   font-size: 30px;
   font-weight: normal;
 }
