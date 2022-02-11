@@ -60,7 +60,8 @@ select::-ms-expand {
 }
 
 #isWeighted {
-  margin-left: calc(50% - 75px);
+  margin-left: calc(50% - 90px);
+  width: 180px;
 }
 
 @media screen and (min-width:0\0) {
