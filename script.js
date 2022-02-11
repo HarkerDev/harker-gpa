@@ -1,4 +1,4 @@
-let weighted = true;
+let weighted = "harker-weighted";
 
 function submitForm() {
     var totalSum = 0;
@@ -27,8 +27,12 @@ function submitForm() {
 
 function value(honors, gradeIndex) {
     var values = [4.3, 4.0, 3.7, 3.3, 3.0, 2.7, 2.3, 2.0, 1.7, 1.3, 1.0, 0.7, 0];
+    if(weighted == "standard-unweighted") {
+        values[0] = 4.0;
+        values[values.length - 2] = 0;
+    }
     var value = 0;
-    if (honors == 1 && weighted) {
+    if (honors == 1 && weighted == "harker-weighted") {
         value += 0.5;
     }
     value += values[gradeIndex];
@@ -41,12 +45,15 @@ function round(value, precision) {
 }
 
 document.getElementById("isWeighted").onclick = function() {
-    if(document.getElementById("isWeighted").value == "Unweighted") {
-        document.getElementById("isWeighted").value  = "Weighted";
-        weighted = true;
+   if(document.getElementById("isWeighted").value == "Standard Unweighted") {
+        document.getElementById("isWeighted").value = "Harker Weighted";
+        weighted = "harker-weighted";
+    } else if(document.getElementById("isWeighted").value == "Harker Weighted") {
+        document.getElementById("isWeighted").value = "Harker Unweighted";
+        weighted = "harker-unweighted";
     } else {
-        document.getElementById("isWeighted").value  = "Unweighted";
-        weighted = false;
+        document.getElementById("isWeighted").value = "Standard Unweighted";
+        weighted = "standard-unweighted";
     }
 
 }
