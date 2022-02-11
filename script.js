@@ -1,4 +1,4 @@
-let weighted = "harker-weighted";
+let weighted = "Harker Weighted";
 
 function submitForm() {
     var totalSum = 0;
@@ -22,17 +22,17 @@ function submitForm() {
     var gpa = round(totalSum / totalClasses, 2);
     var div = document.getElementById("gpa");
 
-    div.innerHTML = "Your Harker GPA is " + gpa;
+    div.innerHTML = "Your " + weighted + " GPA is " + gpa;
 }
 
 function value(honors, gradeIndex) {
     var values = [4.3, 4.0, 3.7, 3.3, 3.0, 2.7, 2.3, 2.0, 1.7, 1.3, 1.0, 0.7, 0];
-    if(weighted == "standard-unweighted") {
+    if(weighted == "Standard Unweighted") {
         values[0] = 4.0;
         values[values.length - 2] = 0;
     }
     var value = 0;
-    if (honors == 1 && weighted == "harker-weighted") {
+    if (honors == 1 && weighted == "Harker Weighted") {
         value += 0.5;
     }
     value += values[gradeIndex];
@@ -47,13 +47,13 @@ function round(value, precision) {
 document.getElementById("isWeighted").onclick = function() {
    if(document.getElementById("isWeighted").value == "Standard Unweighted") {
         document.getElementById("isWeighted").value = "Harker Weighted";
-        weighted = "harker-weighted";
+        weighted = "Harker Weighted";
     } else if(document.getElementById("isWeighted").value == "Harker Weighted") {
         document.getElementById("isWeighted").value = "Harker Unweighted";
-        weighted = "harker-unweighted";
+        weighted = "Harker Unweighted";
     } else {
         document.getElementById("isWeighted").value = "Standard Unweighted";
-        weighted = "standard-unweighted";
+        weighted = "Standard Unweighted";
     }
 
 }
