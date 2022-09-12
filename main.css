@@ -68,6 +68,7 @@ select::-ms-expand {
 
   h1 {
     margin-top: -30px;
+    margin-bottom: 5px;
   }
 
   input {
@@ -81,6 +82,7 @@ select::-ms-expand {
 
   #calcGPA {
     width: 160px;
+    margin-bottom: 5px;
   }
 
   div {
