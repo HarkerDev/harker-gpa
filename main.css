@@ -39,6 +39,19 @@ input {
   border-radius: 5px;
 }
 
+button {
+  margin: 20px;
+  border: 1px solid #111;
+  background-color: #eee;
+  width: 150px;
+  padding: 5px 5px 5px 5px;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  height: 34px;
+  border-radius: 5px;
+}
+
 select {
   margin: 10px;
   border: 1px solid #111;
