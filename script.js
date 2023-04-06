@@ -43,6 +43,7 @@ function removeLastSemester() {
     if (semNum == 1) {
         document.getElementById("removeSemButton").style.display = "none";
     }
+    document.getElementById("addSemButton").style.display = "inline-block";
 }
 
 function value(honors, gradeIndex) {
