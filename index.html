@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Harker GPA DMT2</title>
+    <title>Harker GPA</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta name="description" content="Harker GPA Calculator">
@@ -10,33 +10,18 @@
 
     <link href="https://fonts.googleapis.com/css?family=Lexend+Deca|Roboto" rel="stylesheet">
     <link href="main.css?v=2" rel="stylesheet">
-    <link id="pagestyle" href="light-mode.css" rel="stylesheet" type="text/css" />
-
-    
     <script>
         window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
         ga('create', 'UA-136862177-4', 'auto');
         ga('send', 'pageview');
     </script>
     <script async src='https://www.google-analytics.com/analytics.js'></script>
-   
 </head>
 
 <body>
     <h1>Harker GPA Calculator</h1>
     <input type="submit" id="isWeighted" value="Harker Weighted" />
-    <button id="btnToggle" onclick="toggle()">Change Mode</button>
 
-<script>
-    function toggle() {
-        var styleName=document.getElementById("pagestyle").getAttribute("href");
-        if (styleName=="dark-mode.css")
-            document.getElementById("pagestyle").setAttribute("href", "light-mode.css");
-        else
-            document.getElementById("pagestyle").setAttribute("href", "dark-mode.css");
-    }
-</script>
-    
     <form id="classList">
 
         <div class="class" id="class1"> Class 1
@@ -227,6 +212,7 @@
     </p>
 
     <script src="script.js?v=3"></script>
+
 </body>
 
 </html>
