@@ -27,7 +27,7 @@ p {
 }
 
 input {
-  margin: 20px;
+  margin: 10px;
   border: 1px solid #111;
   background-color: #eee;
   width: 150px;
@@ -35,7 +35,7 @@ input {
   font-family: Roboto, sans-serif;
   font-size: 16px;
   border: 1px solid #ccc;
-  height: 34px;
+  height: 30px;
   border-radius: 5px;
 }
 
@@ -73,6 +73,7 @@ select::-ms-expand {
 
   input {
     color: #000;
+    width: 100px;
   }
 
   #isWeighted {
@@ -81,7 +82,7 @@ select::-ms-expand {
   }
 
   #calcGPA {
-    width: 160px;
+    width: 120px;
     margin-bottom: 5px;
   }
 
@@ -90,7 +91,7 @@ select::-ms-expand {
   }
 
   select {
-    width: 125px;
+    width: 120px;
     color: #000;
     margin: 10px 5px 10px 10px;
   }
@@ -99,5 +100,16 @@ select::-ms-expand {
 @media (max-width: 500px) {
   div {
     font-size: 16px;
+  }
+
+  #calcGPA {
+    width: 120px;
+    margin-bottom: 5px;
+  }
+
+  select {
+    width: 100px;
+    color: #000;
+    margin: 10px 5px 10px 10px;
   }
 }
