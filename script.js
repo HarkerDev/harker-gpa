@@ -1,10 +1,13 @@
 let weighted = "Harker Weighted";
 let semNum = 0;
+var nSub = 0;
 
 function submitForm() {
     var totalSum = 0;
     var totalClasses = 0;
     for (j = 1; j <= semNum; j++) {
+        var bySemSum = 0;
+        var bySemCount = 0;
         for (i = 1; i < 8; i++) {
             var classID = document.getElementById("sem" + j + "class" + i);
             // No class
@@ -15,12 +18,34 @@ function submitForm() {
             } else if ((i == 6 && (level == 2)) || (i == 7 && (level == 0))) {
                 totalSum += value(level, classID.children[2].selectedIndex) / 2;
                 totalClasses += 0.5;
+                bySemSum += value(level, classID.children[2].selectedIndex) / 2;
+                bySemCount += 0.5;
             } else {
                 totalSum += value(level, classID.children[2].selectedIndex);
+                bySemSum += value(level, classID.children[2].selectedIndex);
                 totalClasses += 1;
+                bySemCount += 1;
             }
         }
+        var gpa = round(bySemSum / bySemCount, 2);
+        if (semNum != 1) {
+            var div = document.getElementById("sem" + j);
+            document.getElementById("sLine" + j).remove();
+            if (document.getElementById("SGPA" + j) != null){
+                document.getElementById("SGPA" + j).remove();
+            }
+            var sGPA = document.createElement('p');
+            sGPA.setAttribute("id", "SGPA" + j);
+            sGPA.innerHTML = "Your " + weighted + " GPA is " + gpa;
+            div.appendChild(sGPA);
+            
+            const separatorLine = document.createElement("hr");
+            separatorLine.setAttribute("id", "sLine" + j);
+            separatorLine.style.width = "50%";
+            div.appendChild(separatorLine);
+        }
     }
+            nSub++;
     var gpa = round(totalSum / totalClasses, 2);
     var div = document.getElementById("gpa");
 
@@ -157,7 +182,10 @@ function createNewSemester(newSemNum) {
         semDiv.appendChild(classDiv);
         semList.appendChild(semDiv);
     }
+    
     const separatorLine = document.createElement("hr");
+    separatorLine.setAttribute("id", "sLine" + newSemNum);
+    console.log(newSemNum);
     separatorLine.style.width = "50%";
     semDiv.appendChild(separatorLine);
 }
