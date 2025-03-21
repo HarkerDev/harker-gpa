@@ -36,7 +36,7 @@ function submitForm() {
             }
             var sGPA = document.createElement('p');
             sGPA.setAttribute("id", "SGPA" + j);
-            sGPA.innerHTML = "Your " + weighted + " GPA is " + gpa;
+            sGPA.innerHTML = "Your Semester " + j + " " + weighted + " GPA is " + gpa;
             div.appendChild(sGPA);
             
             const separatorLine = document.createElement("hr");
@@ -49,7 +49,7 @@ function submitForm() {
     var gpa = round(totalSum / totalClasses, 2);
     var div = document.getElementById("gpa");
 
-    div.innerHTML = "Your " + weighted + " GPA is " + gpa;
+    div.innerHTML = "Your overall " + weighted + " GPA is " + gpa;
 }
 
 function addSemester() {

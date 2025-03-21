@@ -11,6 +11,8 @@ body {
 }
 
 h1 {
+  margin-top: -30px;
+  margin-bottom: 5px;
   text-align: center;
   font-family: "Lexend Deca", Roboto, sans-serif;
   font-size: 30px;
@@ -26,7 +28,59 @@ p {
   font-size: 20;
 }
 
-input {
+#calcGPA{  
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: right;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: #3eac42;
+}
+
+#addSemButton{  
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: right;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: #3eac42;
+}
+
+#removeSemButton{  
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: right;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: #f00000;
+}
+
+#isWeighted {
+  margin-left:calc(50% - 100px);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: #a800f0;
+}
+
+#classList input {
   margin: 10px;
   border: 1px solid #111;
   background-color: #eee;
@@ -81,9 +135,55 @@ select::-ms-expand {
     width: 200px;
   }
 
-  #calcGPA {
-    width: 120px;
-    margin-bottom: 5px;
+  #calcGPA{  
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: #3eac42;
+  }
+  
+  #addSemButton{  
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: #3eac42;
+  }
+  
+  #removeSemButton{  
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: #f00000;
+  }
+  
+  #isWeighted {
+    margin-left:calc(50% - 100px);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #a800f0;
   }
 
   div {
@@ -102,9 +202,55 @@ select::-ms-expand {
     font-size: 16px;
   }
 
-  #calcGPA {
-    width: 120px;
-    margin-bottom: 5px;
+  #calcGPA{  
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: #3eac42;
+  }
+  
+  #addSemButton{  
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: #3eac42;
+  }
+  
+  #removeSemButton{  
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: #f00000;
+  }
+  
+  #isWeighted {
+    margin-left:calc(50% - 100px);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #a800f0;
   }
 
   select {
