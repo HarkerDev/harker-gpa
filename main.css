@@ -59,6 +59,69 @@ h1 {
   font-size: 14px;
 }
 
+.controls-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+.controls-row .field-block {
+  margin: 0;
+}
+
+.card-tools {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tool-status {
+  position: absolute;
+  right: 2px;
+  bottom: -18px;
+  white-space: nowrap;
+  color: var(--ink-muted);
+  font-size: 13px;
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+
+.tool-status.visible {
+  opacity: 1;
+}
+
+.tool-status.error {
+  color: var(--danger);
+}
+
+.tool-button {
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-field);
+  background: none;
+  color: var(--ink-soft);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color .15s ease, background .15s ease, color .15s ease;
+}
+
+.tool-button:hover {
+  border-color: var(--line);
+  background: #f7f9fb;
+  color: var(--ink);
+}
+
+.tool-button.danger:hover {
+  border-color: rgba(226, 68, 92, 0.4);
+  background: rgba(226, 68, 92, 0.06);
+  color: var(--danger);
+}
 
 .field-block {
   margin: 0 0 26px;
@@ -357,6 +420,22 @@ select::-ms-expand {
 
   .field-block {
     max-width: none;
+  }
+
+  .controls-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .card-tools {
+    justify-content: flex-start;
+    margin-left: -12px;
+  }
+
+  .tool-status {
+    right: auto;
+    left: 12px;
   }
 
   .col-heads {

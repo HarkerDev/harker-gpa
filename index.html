@@ -9,7 +9,7 @@
     <meta name="author" content="HarkerDev">
 
     <link href="https://fonts.googleapis.com/css?family=Lexend+Deca|Roboto" rel="stylesheet">
-    <link href="main.css?v=2" rel="stylesheet">
+    <link href="main.css?v=3" rel="stylesheet">
     <script>
         window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
         ga('create', 'UA-136862177-4', 'auto');
@@ -27,21 +27,31 @@
                 <p class="subtitle">Enter your courses below to calculate your semester and overall GPA.</p>
             </header>
 
-            <fieldset class="field-block" id="isWeighted">
-                <legend class="field-label">Grading System</legend>
-                <label class="radio">
-                    <input type="radio" name="weighted" value="Harker Weighted" checked>
-                    <span>Harker Weighted</span>
-                </label>
-                <label class="radio">
-                    <input type="radio" name="weighted" value="Harker Unweighted">
-                    <span>Harker Unweighted</span>
-                </label>
-                <label class="radio">
-                    <input type="radio" name="weighted" value="Standard Unweighted">
-                    <span>Standard Unweighted</span>
-                </label>
-            </fieldset>
+            <div class="controls-row">
+                <fieldset class="field-block" id="isWeighted">
+                    <legend class="field-label">Grading System</legend>
+                    <label class="radio">
+                        <input type="radio" name="weighted" value="Harker Weighted" checked>
+                        <span>Harker Weighted</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="weighted" value="Harker Unweighted">
+                        <span>Harker Unweighted</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="weighted" value="Standard Unweighted">
+                        <span>Standard Unweighted</span>
+                    </label>
+                </fieldset>
+
+                <div class="card-tools">
+                    <span id="toolStatus" class="tool-status" role="status" aria-live="polite"></span>
+                    <button type="button" class="tool-button" onclick="importData()">Import</button>
+                    <button type="button" class="tool-button" onclick="exportData()">Export</button>
+                    <button type="button" class="tool-button danger" onclick="resetData()">Reset</button>
+                    <input type="file" id="importFile" accept=".json,application/json" hidden>
+                </div>
+            </div>
 
             <form id="classList">
                 <div id="semList"></div>
@@ -68,7 +78,7 @@
         </p>
     </main>
 
-    <script src="script.js?v=6"></script>
+    <script src="script.js?v=7"></script>
 
 </body>
 

@@ -41,23 +41,30 @@ function submitForm() {
     div.innerHTML = "Your overall " + weighted + " GPA is " + gpa + "!";
 }
 
-function addSemester() {
-    if (semNum == 1) {
-        document.getElementById("removeSemButton").style.display = "inline-block";
+const MAX_SEMESTERS = 8;
+
+function addSemester(courses) {
+    if (semNum >= MAX_SEMESTERS) {
+        return;
     }
-    if (semNum == 7) {
-        document.getElementById("addSemButton").style.display = "none";
-    }
-    createNewSemester(++semNum);
+    createNewSemester(++semNum, courses);
+    updateSemButtons();
 }
 
 function removeLastSemester() {
-    document.getElementById("sem" + (semNum)).remove();
-    semNum--;
-    if (semNum == 1) {
-        document.getElementById("removeSemButton").style.display = "none";
+    if (semNum <= 1) {
+        return;
     }
-    document.getElementById("addSemButton").style.display = "inline-block";
+    document.getElementById("sem" + semNum).remove();
+    semNum--;
+    updateSemButtons();
+}
+
+function updateSemButtons() {
+    document.getElementById("removeSemButton").style.display =
+        (semNum > 1) ? "inline-flex" : "none";
+    document.getElementById("addSemButton").style.display =
+        (semNum < MAX_SEMESTERS) ? "inline-flex" : "none";
 }
 
 function value(honors, gradeIndex) {
@@ -98,14 +105,20 @@ const GRADES = {
     "D+": "dplus", "D": "d", "D-": "dminus", "F/I": "L"
 };
 
-function addCourse(courseList, defaultLevel) {
-    defaultLevel = defaultLevel || "regular";
+const GRADE_VALUES = Object.keys(GRADES).map(key => GRADES[key]);
+
+function addCourse(courseList, course) {
+    course = course || {};
+    const defaultLevel = LEVELS[course.level] ? course.level : "regular";
+    const defaultGrade = GRADE_VALUES.indexOf(course.grade) >= 0 ? course.grade : "aplus";
     const classDiv = document.createElement("div");
     classDiv.setAttribute("class", "class");
 
     const courseName = document.createElement("input");
     courseName.type = "text";
     courseName.placeholder = "Enter Course Name";
+    courseName.setAttribute("class", "course-name");
+    courseName.value = course.name || "";
     classDiv.appendChild(courseName);
 
     const weight = document.createElement("select");
@@ -125,7 +138,7 @@ function addCourse(courseList, defaultLevel) {
         const optiongrade = document.createElement("option");
         optiongrade.innerHTML = element;
         optiongrade.value = GRADES[element];
-        optiongrade.selected = (element == "A+");
+        optiongrade.selected = (GRADES[element] == defaultGrade);
         grade.appendChild(optiongrade);
     });
     classDiv.appendChild(grade);
@@ -170,7 +183,7 @@ function updateRemoveCourseButtons(courseList) {
     });
 }
 
-function createNewSemester(newSemNum) {
+function createNewSemester(newSemNum, courses) {
     const semList = document.getElementById("semList");
     const semDiv = document.createElement("div");
     semDiv.setAttribute("class", "sem");
@@ -216,8 +229,12 @@ function createNewSemester(newSemNum) {
     const courseList = document.createElement("div");
     courseList.setAttribute("class", "course-list");
     semBody.appendChild(courseList);
-    for (i = 0; i < 7; i++) {
-        addCourse(courseList, (i == 6) ? "elective" : "regular");
+    if (courses && courses.length) {
+        courses.forEach(course => addCourse(courseList, course));
+    } else {
+        for (i = 0; i < 7; i++) {
+            addCourse(courseList, { level: (i == 6) ? "elective" : "regular" });
+        }
     }
 
     const addCourseButton = document.createElement("button");
@@ -233,5 +250,109 @@ function createNewSemester(newSemNum) {
     separatorLine.setAttribute("id", "sLine" + newSemNum);
     semDiv.appendChild(separatorLine);
 }
+
+const FILE_FORMAT = "harker-gpa";
+const FILE_VERSION = 1;
+
+function serializeState() {
+    const semesters = [];
+    for (var s = 1; s <= semNum; s++) {
+        const courses = [];
+        document.getElementById("sem" + s).querySelectorAll(".class").forEach(classDiv => {
+            courses.push({
+                name: classDiv.querySelector(".course-name").value.trim(),
+                level: classDiv.querySelector(".course-level").value,
+                grade: classDiv.querySelector(".course-grade").value
+            });
+        });
+        semesters.push({ courses: courses });
+    }
+    return {
+        format: FILE_FORMAT,
+        version: FILE_VERSION,
+        gradingSystem: weighted,
+        semesters: semesters
+    };
+}
+
+function loadState(data) {
+    if (!data || data.format !== FILE_FORMAT || !Array.isArray(data.semesters) || !data.semesters.length) {
+        throw new Error("This doesn't look like a Harker GPA file.");
+    }
+
+    const radio = document.querySelector("#isWeighted input[value=\"" + (data.gradingSystem || "") + "\"]");
+    if (radio) {
+        radio.checked = true;
+        weighted = radio.value;
+    }
+
+    document.getElementById("semList").innerHTML = "";
+    semNum = 0;
+    document.getElementById("gpa").innerHTML = "";
+
+    data.semesters.slice(0, MAX_SEMESTERS).forEach(semester => {
+        const courses = Array.isArray(semester && semester.courses) ? semester.courses : [];
+        addSemester(courses.length ? courses : null);
+    });
+
+    submitForm();
+}
+
+function exportData() {
+    const blob = new Blob([JSON.stringify(serializeState(), null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "harker-gpa-" + new Date().toISOString().slice(0, 10) + ".json";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    showStatus("Exported " + semNum + (semNum == 1 ? " semester" : " semesters"));
+}
+
+function importData() {
+    document.getElementById("importFile").click();
+}
+
+function readImportFile(file) {
+    if (!file) {
+        return;
+    }
+    const reader = new FileReader();
+    reader.onload = function () {
+        try {
+            loadState(JSON.parse(reader.result));
+            showStatus("Imported " + file.name);
+        } catch (err) {
+            showStatus(err instanceof SyntaxError ? "Couldn't read that file." : err.message, true);
+        }
+    };
+    reader.readAsText(file);
+}
+
+function resetData() {
+    if (!confirm("Clear all courses and start over?")) {
+        return;
+    }
+    document.getElementById("semList").innerHTML = "";
+    semNum = 0;
+    document.getElementById("gpa").innerHTML = "";
+    addSemester();
+    showStatus("Cleared");
+}
+
+function showStatus(message, isError) {
+    const status = document.getElementById("toolStatus");
+    status.innerHTML = "";
+    status.appendChild(document.createTextNode(message));
+    status.classList.toggle("error", !!isError);
+    status.classList.add("visible");
+}
+
+document.getElementById("importFile").onchange = function () {
+    readImportFile(this.files[0]);
+    this.value = "";
+};
 
 addSemester();
