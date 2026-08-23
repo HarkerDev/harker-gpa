@@ -241,6 +241,47 @@ select::-ms-expand {
   font-size: 13px;
 }
 
+.sem-actions {
+  display: flex;
+  align-self: center;
+  flex-shrink: 0;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.sem-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+
+.sem-icon-button svg {
+  width: 15px;
+  height: 15px;
+  display: block;
+}
+
+.sem-icon-button:hover {
+  border-color: var(--line-strong);
+  background: #f7f9fb;
+  color: var(--ink);
+}
+
+.remove-sem:hover {
+  border-color: rgba(226, 68, 92, 0.4);
+  background: rgba(226, 68, 92, 0.06);
+  color: var(--danger);
+}
+
 .sem.collapsed .sem-body {
   display: none;
 }
@@ -262,6 +303,9 @@ select::-ms-expand {
 }
 
 .remove-course {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 36px;
   height: 36px;
   padding: 0;
@@ -269,11 +313,14 @@ select::-ms-expand {
   border-radius: 50%;
   background: #fff;
   color: var(--ink-muted);
-  font-family: inherit;
-  font-size: 18px;
-  line-height: 1;
   cursor: pointer;
   transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+
+.remove-course svg {
+  width: 16px;
+  height: 16px;
+  display: block;
 }
 
 .remove-course:hover {
@@ -320,8 +367,7 @@ select::-ms-expand {
   margin-top: 4px;
 }
 
-#addSemButton,
-#removeSemButton {
+#addSemButton {
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -341,15 +387,6 @@ select::-ms-expand {
 #addSemButton:hover {
   border-color: var(--line-strong);
   background: #f7f9fb;
-}
-
-#removeSemButton {
-  color: var(--danger);
-}
-
-#removeSemButton:hover {
-  border-color: rgba(226, 68, 92, 0.4);
-  background: rgba(226, 68, 92, 0.06);
 }
 
 .icon {

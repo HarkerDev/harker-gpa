@@ -15,11 +15,11 @@ function readCourse(classDiv) {
 function submitForm() {
     var totalSum = 0;
     var totalClasses = 0;
-    for (j = 1; j <= semNum; j++) {
+    const semDivs = document.querySelectorAll("#semList .sem");
+    semDivs.forEach(semDiv => {
         var bySemSum = 0;
         var bySemCount = 0;
-        const classDivs = document.getElementById("sem" + j).querySelectorAll(".class");
-        classDivs.forEach(classDiv => {
+        semDiv.querySelectorAll(".class").forEach(classDiv => {
             const course = readCourse(classDiv);
             if (course == null) {
                 return;
@@ -30,11 +30,11 @@ function submitForm() {
             bySemCount += course.credit;
         });
         var gpa = bySemCount > 0 ? round(bySemSum / bySemCount, 2) : "—";
-        if (semNum != 1) {
-            updateSemSummary(document.getElementById("sem" + j), gpa);
+        if (semDivs.length != 1) {
+            updateSemSummary(semDiv, gpa);
         }
-    }
-            nSub++;
+    });
+    nSub++;
     var gpa = totalClasses > 0 ? round(totalSum / totalClasses, 2) : "—";
     var div = document.getElementById("gpa");
 
@@ -43,26 +43,60 @@ function submitForm() {
 
 const MAX_SEMESTERS = 8;
 
+const SVG_OPEN = "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" " +
+    "stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\">";
+
+const ICON_DUPLICATE = SVG_OPEN +
+    "<rect x=\"9\" y=\"9\" width=\"11\" height=\"11\" rx=\"2\"></rect>" +
+    "<path d=\"M5 15V6a2 2 0 0 1 2-2h9\"></path></svg>";
+
+const ICON_CLOSE = SVG_OPEN + "<path d=\"M6 6l12 12M18 6L6 18\"></path></svg>";
+
 function addSemester(courses) {
     if (semNum >= MAX_SEMESTERS) {
         return;
     }
-    createNewSemester(++semNum, courses);
-    updateSemButtons();
+    const semDiv = createNewSemester(courses);
+    document.getElementById("semList").appendChild(semDiv);
+    renumberSemesters();
 }
 
-function removeLastSemester() {
+function duplicateSemester(semDiv) {
+    if (semNum >= MAX_SEMESTERS) {
+        return;
+    }
+    const courses = [];
+    semDiv.querySelectorAll(".class").forEach(classDiv => {
+        courses.push({
+            name: classDiv.querySelector(".course-name").value.trim(),
+            level: classDiv.querySelector(".course-level").value,
+            grade: classDiv.querySelector(".course-grade").value
+        });
+    });
+    const newSemDiv = createNewSemester(courses.length ? courses : null);
+    semDiv.after(newSemDiv);
+    renumberSemesters();
+}
+
+function removeSemester(semDiv) {
     if (semNum <= 1) {
         return;
     }
-    document.getElementById("sem" + semNum).remove();
-    semNum--;
-    updateSemButtons();
+    semDiv.remove();
+    renumberSemesters();
 }
 
-function updateSemButtons() {
-    document.getElementById("removeSemButton").style.display =
-        (semNum > 1) ? "inline-flex" : "none";
+function renumberSemesters() {
+    const semDivs = document.querySelectorAll("#semList .sem");
+    semNum = semDivs.length;
+    semDivs.forEach((semDiv, index) => {
+        const num = index + 1;
+        semDiv.id = "sem" + num;
+        semDiv.querySelector(".sem-title").innerHTML = "Semester " + num;
+        semDiv.querySelector(".remove-sem").style.display = (semNum > 1) ? "" : "none";
+        semDiv.querySelector(".duplicate-sem").style.display =
+            (semNum < MAX_SEMESTERS) ? "" : "none";
+    });
     document.getElementById("addSemButton").style.display =
         (semNum < MAX_SEMESTERS) ? "inline-flex" : "none";
 }
@@ -147,7 +181,7 @@ function addCourse(courseList, course) {
     removeButton.type = "button";
     removeButton.setAttribute("class", "remove-course");
     removeButton.setAttribute("aria-label", "Remove course");
-    removeButton.innerHTML = "&times;";
+    removeButton.innerHTML = ICON_CLOSE;
     removeButton.onclick = function () {
         classDiv.remove();
         updateRemoveCourseButtons(courseList);
@@ -183,12 +217,9 @@ function updateRemoveCourseButtons(courseList) {
     });
 }
 
-function createNewSemester(newSemNum, courses) {
-    const semList = document.getElementById("semList");
+function createNewSemester(courses) {
     const semDiv = document.createElement("div");
     semDiv.setAttribute("class", "sem");
-    semDiv.setAttribute("id", "sem" + newSemNum.toString());
-    semList.appendChild(semDiv);
 
     const semHeader = document.createElement("div");
     semHeader.setAttribute("class", "sem-header");
@@ -200,13 +231,40 @@ function createNewSemester(newSemNum, courses) {
     semHeader.appendChild(caret);
 
     const semText = document.createElement("span");
-    semText.innerHTML = "Semester " + newSemNum.toString();
     semText.setAttribute("class", "sem-title");
     semHeader.appendChild(semText);
 
     const semSummary = document.createElement("span");
     semSummary.setAttribute("class", "sem-summary");
     semHeader.appendChild(semSummary);
+
+    const semActions = document.createElement("span");
+    semActions.setAttribute("class", "sem-actions");
+    semHeader.appendChild(semActions);
+
+    const duplicateSemButton = document.createElement("button");
+    duplicateSemButton.type = "button";
+    duplicateSemButton.setAttribute("class", "sem-icon-button duplicate-sem");
+    duplicateSemButton.setAttribute("aria-label", "Duplicate semester");
+    duplicateSemButton.setAttribute("title", "Duplicate semester");
+    duplicateSemButton.innerHTML = ICON_DUPLICATE;
+    duplicateSemButton.onclick = function (event) {
+        event.stopPropagation();
+        duplicateSemester(semDiv);
+    };
+    semActions.appendChild(duplicateSemButton);
+
+    const removeSemButton = document.createElement("button");
+    removeSemButton.type = "button";
+    removeSemButton.setAttribute("class", "sem-icon-button remove-sem");
+    removeSemButton.setAttribute("aria-label", "Remove semester");
+    removeSemButton.setAttribute("title", "Remove semester");
+    removeSemButton.innerHTML = ICON_CLOSE;
+    removeSemButton.onclick = function (event) {
+        event.stopPropagation();
+        removeSemester(semDiv);
+    };
+    semActions.appendChild(removeSemButton);
 
     semHeader.onclick = function () {
         toggleSemester(semDiv, caret);
@@ -247,8 +305,9 @@ function createNewSemester(newSemNum, courses) {
     semBody.appendChild(addCourseButton);
 
     const separatorLine = document.createElement("hr");
-    separatorLine.setAttribute("id", "sLine" + newSemNum);
     semDiv.appendChild(separatorLine);
+
+    return semDiv;
 }
 
 const FILE_FORMAT = "harker-gpa";
