@@ -98,12 +98,14 @@ h1 {
 }
 
 .tool-button {
+  display: inline-flex;
+  align-items: center;
   height: 32px;
-  padding: 0 12px;
-  border: 1px solid transparent;
+  padding: 0 14px;
+  border: 1px solid var(--line);
   border-radius: var(--radius-field);
-  background: none;
-  color: var(--ink-soft);
+  background: #fff;
+  color: var(--ink);
   font-family: inherit;
   font-size: 13px;
   font-weight: 500;
@@ -112,9 +114,8 @@ h1 {
 }
 
 .tool-button:hover {
-  border-color: var(--line);
+  border-color: var(--line-strong);
   background: #f7f9fb;
-  color: var(--ink);
 }
 
 .tool-button.danger:hover {
@@ -467,12 +468,12 @@ select::-ms-expand {
 
   .card-tools {
     justify-content: flex-start;
-    margin-left: -12px;
+    flex-wrap: wrap;
   }
 
   .tool-status {
     right: auto;
-    left: 12px;
+    left: 0;
   }
 
   .col-heads {
