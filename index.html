@@ -9,7 +9,7 @@
     <meta name="author" content="HarkerDev">
 
     <link href="https://fonts.googleapis.com/css?family=Lexend+Deca|Roboto" rel="stylesheet">
-    <link href="main.css?v=2" rel="stylesheet">
+    <link href="main.css?v=4" rel="stylesheet">
     <script>
         window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
         ga('create', 'UA-136862177-4', 'auto');
@@ -19,29 +19,63 @@
 </head>
 
 <body>
-    <h1>Harker GPA Calculator</h1>
-    <div style="display: flex; justify-content: center;">
-        <input type="submit" id="isWeighted" value="Harker Weighted" />
-    </div>
-    <form id="classList">
+    <main class="page">
+        <div class="card">
 
-        <div id="semList">
+            <header class="card-header">
+                <h1>Harker GPA Calculator</h1>
+                <p class="subtitle">Enter your courses below to calculate your semester and overall GPA.</p>
+            </header>
+
+            <div class="controls-row">
+                <fieldset class="field-block" id="isWeighted">
+                    <legend class="field-label">Grading System</legend>
+                    <label class="radio">
+                        <input type="radio" name="weighted" value="Harker Weighted" checked>
+                        <span>Harker Weighted</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="weighted" value="Harker Unweighted">
+                        <span>Harker Unweighted</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="weighted" value="Standard Unweighted">
+                        <span>Standard Unweighted</span>
+                    </label>
+                </fieldset>
+
+                <div class="card-tools">
+                    <span id="toolStatus" class="tool-status" role="status" aria-live="polite"></span>
+                    <button type="button" class="tool-button" onclick="importData()">Import</button>
+                    <button type="button" class="tool-button" onclick="exportData()">Export</button>
+                    <button type="button" class="tool-button danger" onclick="resetData()">Reset</button>
+                    <input type="file" id="importFile" accept=".json,application/json" hidden>
+                </div>
+            </div>
+
+            <form id="classList">
+                <div id="semList"></div>
+
+                <div class="form-actions">
+                    <button type="button" id="addSemButton" onclick="addSemester()">
+                        <span class="icon">+</span> Add Semester
+                    </button>
+                </div>
+            </form>
+
+            <div class="card-footer">
+                <p id="gpa"></p>
+                <button type="button" id="calcGPA" onclick="submitForm()">Calculate GPA</button>
+            </div>
+
         </div>
-        
-        <button type="button" id="addSemButton" onclick="addSemester()">Add New Semester</button>
-        <button type="button" id="calcGPA" onclick="submitForm()">Calculate GPA</button>
-        <button type="button" id="removeSemButton" onclick="removeLastSemester()" style="display:none">Remove Semester</button>
 
+        <p class="credit">
+            Made with &lt;&gt; by <a href="https://dev.harker.org/?utm_source=gpa&utm_medium=madeby" target="blank">HarkerDev</a>.
+        </p>
+    </main>
 
-    </form>
-
-    <p id="gpa"></p>
-    
-    <p style="font-size: 12px;">
-        Made with &lt;&gt; by <a href="https://dev.harker.org/?utm_source=gpa&utm_medium=madeby" target="blank">HarkerDev</a>.
-    </p>
-
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=8"></script>
 
 </body>
 
