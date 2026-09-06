@@ -129,7 +129,7 @@ document.querySelectorAll("#isWeighted input[type=radio]").forEach(radio => {
 const LEVELS = {
     "regular": "Regular",
     "smartkid": "Honors/AP",
-    "elective": "Elective"
+    "elective": "Extra Period Option"
 };
 
 const GRADES = {
